@@ -1,7 +1,7 @@
 dEmail
 ======
 
-The goal of this quick project is to automatically send out a results email after every NASCAR practice session. It will eventually be a web app that lets you select which team or driver to focus on, but those driver's will be hardcoded in the beginning and there won't be a web interface.
+The goal of this quick project is to automatically send out a results email after every NASCAR practice session. It will eventually be a web app that lets you select which team or driver to focus on, but the drivers will be hardcoded in the beginning and there won't be a web interface until the core functionality is completed.
 
 **Checkpoints in the Project:**
 - Create html template using antworts guidelines 
