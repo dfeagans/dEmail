@@ -5,7 +5,7 @@ The goal of this quick project is to automatically send out a result's email aft
 
 There were three reasons I tried this project: First, I needed to apply all the html, css, and node documentation I had been reading. Second, the current result's email is a screenshot of the leaderboard, which isn't exactly congruent with the company's polished image. Third, based on [this data](http://www.campaignmonitor.com/resources/will-it-work/email-clients/), it seems like making the formatting more mobile-friendly could add some value. 
 
-**Currently Working On:** Creating jade template that replicates the style currently used by the PR department.
+**Currently Working On:** Creating jade template that replicates the style currently used by the PR department. REMINDER: Make it so that the webpage is 100% on mobile screens.
 
 **Checkpoints in the Project:**
 - Create html template using [antwort's](http://internations.github.io/antwort/) guidelines that replicates the PR departments current style. 
