@@ -1,3 +1,8 @@
+//- The object literal below has to be on one line because Jade doesn't support multi-line javascript.
+//- The format object is used to allow all the inline formatting to be controlled in one place. Quick... and dirty.
+- var format = {font: 'Arial, sans serif', fontColor: '#333', perimeterColor: '#ebebeb', backgroundColor: '#ffffff', width: 600}
+
+
 doctype strict
 html(lang='en')
   head
@@ -7,15 +12,15 @@ html(lang='en')
     title dEmail - Automated Results
     style(type='text/css')
 
-      | .ReadMsgBody { width: 100%; background-color: #ebebeb;}
-      | .ExternalClass {width: 100%; background-color: #ebebeb;}
+      | .ReadMsgBody { width: 100%; background-color: #{format.perimeterColor};}
+      | .ExternalClass {width: 100%; background-color: #{format.perimeterColor};}
       | body {-webkit-text-size-adjust:none; -ms-text-size-adjust:none;}
       | body {margin:0; padding:0;}
       | table {border-spacing:0;}
       | table td {border-collapse:collapse;}
       | .yshortcuts a {border-bottom: none !important;}
 
-      | @media screen and (max-width: 600px) {
+      | @media screen and (max-width: #{format.width}qpx) {
       | table[class="container"] {
       | width: 95% !important;
       | }
@@ -28,18 +33,18 @@ html(lang='en')
       | }
       | }
 
-      | td { border: 1px solid black;}
+  //- | td { border: 1px solid black;}
 
-  body(style='margin: 0; padding: 10px 0;', bgcolor='#ebebeb', leftmargin='0', topmargin='0', marginwidth='0', marginheight='0')
+  body(style='margin: 0; padding: 10px 0;', bgcolor=format.perimeterColor, leftmargin='0', topmargin='0', marginwidth='0', marginheight='0')
     br
     //- 100% wrapper (grey background)
-    table(border='0', width='100%', height='100%', cellpadding='0', cellspacing='0', bgcolor='#ebebeb')
+    table(border='0', width='100%', height='100%', cellpadding='0', cellspacing='0', bgcolor=format.perimeterColor)
       tr
-        td(align='center', valign='top', bgcolor='#ebebeb', style='background-color: #ebebeb;')
-          //- 600px container (white background)
-          table.container(border='0', width='600', cellpadding='0', cellspacing='0', bgcolor='#ffffff')
+        td(align='center', valign='top', bgcolor=format.perimeterColor, style='background-color: '+ format.perimeterColor)
+          //- Actual Container (White Background Section)
+          table.container(border='0', width=format.width, cellpadding='0', cellspacing='0', bgcolor=format.backgroundColor)
             tr
-              td.container-padding(bgcolor='#ffffff', style='background-color: #ffffff; padding-left: 30px; padding-right: 30px; font-size: 14px; line-height: 20px; font-family: Helvetica, sans-serif; color: #333;')
+              td.container-padding(bgcolor=format.backgroundColor, style='background-color:' + format.backgroundColor +  '; padding-left: 30px; padding-right: 30px; font-size: 14px; line-height: 20px; font-family: ' + format.font + '; color: ' + format.fontColor + ';')
                 br
                 //- BEGIN CONTENT
                 table
@@ -48,7 +53,7 @@ html(lang='en')
                     td(style="background: black"): img(src="images/image002.jpg" alt="Team Penske" width="540")
                   //- Title
                   tr(height="50")
-                    td(style="text-align: center; font-family: Arial; font-size: 17.5pt; color: white; background: black"): b Sprint Cup Series Practice Report
+                    td(style="text-align: center; font-size: 17.5pt; color: white; background: black"): b Sprint Cup Series Practice Report
                   //- Car Logos and Names 
                   tr(height="100")
                     td: table(style="text-align: center")
@@ -62,7 +67,7 @@ html(lang='en')
                   tr
                     td
                       table
-                        tr
+                        tr(width= "100")
                           td Finished
                           td 1st
                         tr
