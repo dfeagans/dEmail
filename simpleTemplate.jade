@@ -97,7 +97,7 @@ html(lang='en')
                   //- Full Series Results
                   tr
                     td
-                      table(width="100%")
+                      table(width="100%" style="font-size: 8pt")
                         //- Individual Car Headings
                         tr
                           th: b Pos
@@ -110,10 +110,7 @@ html(lang='en')
                           th: b # Laps
                           th: b -Fastest
                           th: b -Next
-                    
-                  tr
-                    td
-                      table
+                  
                         each driver, i in leaderboard.Passings
                           tr
                             td= i+1
