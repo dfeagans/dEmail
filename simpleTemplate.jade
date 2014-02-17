@@ -1,6 +1,6 @@
 //- The object literal below has to be on one line because Jade doesn't support multi-line javascript.
 //- The format object is used to allow all the inline formatting to be controlled in one place. Quick... and dirty.
-- var format = {font: 'Arial, sans serif', fontColor: '#333', perimeterColor: '#ebebeb', backgroundColor: '#ffffff', width: 600}
+- var format = {font: 'Arial, sans serif', fontColor: '#333', perimeterColor: '#ebebeb', backgroundColor: '#ffffff', width: 600, sidePadding: 30, get halfWidth () {return (this.width-2*this.sidePadding)/2}, standardHeight: 50, get halfHeight () {return (this.standardHeight/2)}}
 
 
 doctype strict
@@ -33,7 +33,7 @@ html(lang='en')
       | }
       | }
 
-  //- | td { border: 1px solid black;}
+      //- | td { border: 1px solid black;}
 
   body(style='margin: 0; padding: 10px 0;', bgcolor=format.perimeterColor, leftmargin='0', topmargin='0', marginwidth='0', marginheight='0')
     br
@@ -52,14 +52,14 @@ html(lang='en')
                   tr 
                     td(style="background: black"): img(src="images/image002.jpg" alt="Team Penske" width="540")
                   //- Title
-                  tr(height="50")
-                    td(style="text-align: center; font-size: 17.5pt; color: white; background: black"): b Sprint Cup Series Practice Report
+                  tr(height=format.standardHeight)
+                    td(style="text-align: center; font-size: 17.5pt; color: white; background: black"): b Sprint Cup Series #{leaderboard.RunName.slice(leaderboard.RunName.indexOf(" "))} Report
                   //- Car Logos and Names 
                   tr(height="100")
                     td: table(style="text-align: center")
                       tr
-                        td(width="372.5"): img(src="images/image003.jpg" alt="Miller Lite")
-                        td(width="372.5"): img(src="images/image004.png" alt="Pennzoil")
+                        td(width=format.halfWidth): img(src="images/image003.jpg" alt="Miller Lite")
+                        td(width=format.halfWidth): img(src="images/image004.png" alt="Pennzoil")
                       tr
                         td(style="text-align: center; color: #1F497D; font-size: 10pt"): b The No. 2 Miller Lite Ford Fusion
                         td(style="text-align: center; color: red; font-size: 10pt"): b The No. 22 Shell-Pennzoil Ford Fusion
@@ -67,35 +67,70 @@ html(lang='en')
                   tr
                     td
                       table
-                        tr(width= "100")
-                          td Finished
-                          td 1st
                         tr
-                          td Speed
-                          td 220 miles per hour
-                        tr
-                          td Time
-                          td 18 Seconds
-                    td
-                      table
-                        tr
-                          td Finished
-                          td 2nd
-                        tr
-                          td Speed
-                          td 200 miles per hour
-                        tr
-                          td Time
-                          td 19 Seconds
+                          td(width=format.halfWidth)
+                            table(width="100%")
+                              tr
+                                td: b Finished
+                                td(style="text-align: center") 1st
+                              tr
+                                td: b Speed
+                                td(style="text-align: center") 220 miles per hour
+                              tr
+                                td: b Time
+                                td(style="text-align: center") 18 Seconds
+                          td(width=format.halfWidth)
+                            table(width="100%")
+                              tr
+                                td: b Finished
+                                td(style="text-align: center") 2nd
+                              tr
+                                td: b Speed
+                                td(style="text-align: center") 200 miles per hour
+                              tr
+                                td: b Time
+                                td(style="text-align: center") 19 Seconds
                   //- General Notes
-                  tr
+                  tr: td(style="text-align: center" height= format.halfHeight) Track: #{leaderboard.TrackName}
                   //- Black Divider
-                  tr
+                  tr: td(style="background: black" height = format.standardHeight)
                   //- Full Series Results
                   tr
+                    td
+                      table(width="100%")
+                        //- Individual Car Headings
+                        tr
+                          th: b Pos
+                          th: b Car
+                          th: b Driver
+                          th: b Team
+                          th: b Time
+                          th: b Speed
+                          th: b Lap #
+                          th: b # Laps
+                          th: b -Fastest
+                          th: b -Next
+                        
+                    each driver, i in leaderboard.Passings
+                      table
+                        tr
+                          td= i
+                          td= driver.CarNo
+                          td= driver.Driver.DriverName
+                          td= driver.Sponsor
+                          td= driver.BestTime
+                          td= driver.BestSpeed
+                          td= driver.BestLap
+                          td= driver.LapCount
+                          td= "Delta"                              
+                          td= "Delta"
+
                   //- Contact Ifo
-                  tr
-                  tr
+                  tr(style="background: black; color: white"): td(style="font-size: 10pt"): b CONTACT INFO
+                  tr(style="background: black; color: white"): td(style="font-size: 10pt") No. 2 Miller Lite Ford: Michael Ribas &nbsp;
+                    a(href="mailto:michael.ribas@penskeracing.com") michael.ribas@penskeracing.com
+                  tr(style="background: black; color: white"): td(style="font-size: 10pt") No. 22 Shell-Pennzoil Ford: Jeremy Troiano &nbsp;
+                    a(href="mailto:jeremy.troiano@penskeracing.com") jeremy.troiano@penskeracing.com
                   br
                   br
 
