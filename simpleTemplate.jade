@@ -110,27 +110,29 @@ html(lang='en')
                           th: b # Laps
                           th: b -Fastest
                           th: b -Next
-                        
-                    each driver, i in leaderboard.Passings
+                    
+                  tr
+                    td
                       table
-                        tr
-                          td= i
-                          td= driver.CarNo
-                          td= driver.Driver.DriverName
-                          td= driver.Sponsor
-                          td= driver.BestTime
-                          td= driver.BestSpeed
-                          td= driver.BestLap
-                          td= driver.LapCount
-                          td= "Delta"                              
-                          td= "Delta"
+                        each driver, i in leaderboard.Passings
+                          tr
+                            td= i+1
+                            td= driver.CarNo
+                            td= driver.Driver.DriverName
+                            td= driver.Sponsor
+                            td= driver.BestTime
+                            td= driver.BestSpeed
+                            td= driver.BestLap
+                            td= driver.LapCount
+                            td= "Delta"                              
+                            td= "Delta"
 
-                  //- Contact Ifo
+                  //- Contact Info
                   tr(style="background: black; color: white"): td(style="font-size: 10pt"): b CONTACT INFO
-                  tr(style="background: black; color: white"): td(style="font-size: 10pt") No. 2 Miller Lite Ford: Michael Ribas &nbsp;
+                  tr(style="background: black; color: white"): td(style="font-size: 10pt"): i No. 2 Miller Lite Ford: Michael Ribas &nbsp;
                     a(href="mailto:michael.ribas@penskeracing.com") michael.ribas@penskeracing.com
-                  tr(style="background: black; color: white"): td(style="font-size: 10pt") No. 22 Shell-Pennzoil Ford: Jeremy Troiano &nbsp;
+                  tr(style="background: black; color: white"): td(style="font-size: 10pt"): i No. 22 Shell-Pennzoil Ford: Jeremy Troiano &nbsp;
                     a(href="mailto:jeremy.troiano@penskeracing.com") jeremy.troiano@penskeracing.com
-                  br
-                  br
+                br
+                br
 
