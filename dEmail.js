@@ -9,7 +9,7 @@ var leaderboard = JSON.parse(leaderboardStr);
 var html = jade.renderFile('simpleTemplate.jade', { pretty : true, leaderboard: leaderboard });
 
 fs.writeFile('index.html', html, function(err){
-    console.log(html);
+//    console.log(html);
     if (err) {
 	console.log(err);
     }
