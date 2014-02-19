@@ -112,9 +112,13 @@ html(lang='en')
                           th: b -Next
                   
                         each driver, i in leaderboard.Passings
-                          - var car1 = driver.Driver.DriverName === "Brad Keselowski";
-                          - blah = car1?format.millerColor:"red";
-                          tr(style = "color:" + blah)
+                          - var rowStyle = "black"
+                          if driver.Driver.DriverName === "Brad Keselowski"
+                            - rowStyle = format.millerColor + "; font-weight: bold"
+                          else if driver.Driver.DriverName === "Joey Logano"
+                            - rowStyle = "red; font-weight: bold"
+
+                          tr(style = "color: " + rowStyle)
                             td= i+1
                             td= driver.CarNo
                             td= driver.Driver.DriverName
