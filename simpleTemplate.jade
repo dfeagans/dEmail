@@ -2,7 +2,6 @@
 //- The format object is used to allow all the inline formatting to be controlled in one place. Quick... and dirty.
 - var format = {font: 'Arial, sans serif', fontColor: '#333', perimeterColor: '#ebebeb', backgroundColor: '#ffffff', millerColor: "#1F497D", width: 600, sidePadding: 30, get halfWidth () {return (this.width-2*this.sidePadding)/2}, standardHeight: 50, get halfHeight () {return (this.standardHeight/2)}}
 
-
 doctype strict
 html(lang='en')
   head
@@ -17,7 +16,7 @@ html(lang='en')
       | body {-webkit-text-size-adjust:none; -ms-text-size-adjust:none;}
       | body {margin:0; padding:0;}
       | table {border-spacing:0;}
-     //- | table td {border-collapse:collapse;}
+      | table td {border-collapse:collapse;}
       | .yshortcuts a {border-bottom: none !important;}
 
       | @media screen and (max-width: #{format.width}qpx) {
@@ -112,13 +111,13 @@ html(lang='en')
                           th: b -Next
                   
                         each driver, i in leaderboard.Passings
-                          - var rowStyle = "black"
+                          - var rowStyle = "white"
                           if driver.Driver.DriverName === "Brad Keselowski"
-                            - rowStyle = format.millerColor + "; font-weight: bold"
+                            - rowStyle = format.millerColor + "; font-weight: bold; color: white"
                           else if driver.Driver.DriverName === "Joey Logano"
-                            - rowStyle = "red; font-weight: bold"
+                            - rowStyle = "red; font-weight: bold; color: white"
 
-                          tr(style = "color: " + rowStyle)
+                          tr(style = "background: " + rowStyle)
                             td= i+1
                             td= driver.CarNo
                             td= driver.Driver.DriverName
