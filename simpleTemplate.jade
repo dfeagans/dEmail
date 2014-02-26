@@ -52,7 +52,7 @@ html(lang='en')
                     td(style="background: black"): img(src="images/image002.jpg" alt="Team Penske" width="540")
                   //- Title
                   tr(height=format.standardHeight)
-                    td(style="text-align: center; font-size: 17.5pt; color: white; background: black"): b Sprint Cup Series #{leaderboard.RunName.slice(leaderboard.RunName.indexOf(" "))} Report
+                    td(style="text-align: center; font-size: 15pt; color: white; background: black"): b Sprint Cup Series Report
                   //- Car Logos and Names 
                   tr(height="100")
                     td: table(style="text-align: center")
@@ -103,10 +103,8 @@ html(lang='en')
                                   tr
                                     td: b Time
                                     td(style="text-align: center")= fastTime + " Seconds"
-                  //- General Notes
-                  tr: td(style="text-align: center" height= format.halfHeight) Track: #{leaderboard.TrackName}
                   //- Black Divider
-                  tr: td(style="background: black" height = format.standardHeight)
+                  tr: td(style="background: black; text-align: center; font-size: 15pt; color: white;" height = format.standardHeight): b #{leaderboard.TrackName + " " + leaderboard.RunName.slice(leaderboard.RunName.indexOf(" "))} 
                   //- Full Series Results
                   tr
                     td
