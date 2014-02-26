@@ -67,28 +67,37 @@ html(lang='en')
                     td
                       table
                         tr
-                          td(width=format.halfWidth)
-                            table(width="100%")
-                              tr
-                                td: b Finished
-                                td(style="text-align: center") 1st
-                              tr
-                                td: b Speed
-                                td(style="text-align: center") 220 miles per hour
-                              tr
-                                td: b Time
-                                td(style="text-align: center") 18 Seconds
-                          td(width=format.halfWidth)
-                            table(width="100%")
-                              tr
-                                td: b Finished
-                                td(style="text-align: center") 2nd
-                              tr
-                                td: b Speed
-                                td(style="text-align: center") 200 miles per hour
-                              tr
-                                td: b Time
-                                td(style="text-align: center") 19 Seconds
+                          each driver, i in leaderboard.Passings
+                            if driver.Driver.DriverName === "Brad Keselowski"
+                              - var firstPlace = driver.RaceRank
+                              - var Speed = driver.BestSpeed
+                              - var fastTime = driver.BestTime
+                              td(width=format.halfWidth)
+                                table(width="100%")
+                                  tr
+                                    td: b Finished
+                                    td(style="text-align: center")= firstPlace
+                                  tr
+                                    td: b Speed
+                                    td(style="text-align: center")= Speed + " miles per hour"
+                                  tr
+                                    td: b Time
+                                    td(style="text-align: center")= fastTime + " Seconds"
+                            if driver.Driver.DriverName === "Joey Logano"
+                              - var firstPlace = driver.RaceRank
+                              - var Speed = driver.BestSpeed
+                              - var fastTime = driver.BestTime
+                              td(width=format.halfWidth)
+                                table(width="100%")
+                                  tr
+                                    td: b Finished
+                                    td(style="text-align: center")= firstPlace
+                                  tr
+                                    td: b Speed
+                                    td(style="text-align: center")= Speed + " miles per hour"
+                                  tr
+                                    td: b Time
+                                    td(style="text-align: center")= fastTime + " Seconds"
                   //- General Notes
                   tr: td(style="text-align: center" height= format.halfHeight) Track: #{leaderboard.TrackName}
                   //- Black Divider
