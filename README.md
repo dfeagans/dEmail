@@ -10,9 +10,9 @@ There were three reasons I tried this project: First, I needed to apply all the 
 **Checkpoints in the Project:**
 
 - [X] Create html template using [antwort's](http://internations.github.io/antwort/) guidelines that replicates the PR departments current style. 
-- [X] Convert the html template to a Jade template for later use in generating the static email html. I used [html2jade](http://html2jade.com/) to turn his template into a starter jade file.
+- [x] Convert the html template to a Jade template for later use in generating the static email html. I used [html2jade](http://html2jade.com/) to turn his template into a starter jade file.
 - [] **Current Task** Style the template up and test it using Litmus. Mostly worried about Outlook.
-- [] Use node.js to grab data from Nascar's json feed. Search for all the available practice results and present in a jqGrid sorted by most recent. Let the user select which event they want to prepare the email for.
+- [ ] Use node.js to grab data from Nascar's json feed. Search for all the available practice results and present in a jqGrid sorted by most recent. Let the user select which event they want to prepare the email for.
 -[X] Combine the leaderboard.json feed with the jade template and save the resulting html to file.
 -[] Use [nodemailer](www.nodemailer.com) to mail the email to a single person for final review before forwarding it out.
 -[] Run npm init, or handbuild the package.json for deployment.
