@@ -1,7 +1,7 @@
 dEmail
 ======
 
-The goal of this quick project is to automatically send out a result's email after every NASCAR practice session. It will eventually be a web app that lets you select which team or driver to focus on, but the drivers will be hardcoded in the beginning and there won't be a web interface until the core functionality is completed. I used the Antwort email template because it handles both Outlook and mobile formatting concerns.
+The goal of this quick project is to automatically send out a result's email after every NASCAR practice session. It might eventually be a web app that lets you select which team or driver to focus on, but the drivers will be hardcoded in the beginning and there won't be a web interface until the core functionality is completed. I used the Antwort email template because it handles both Outlook and mobile formatting concerns.
 
 There were three reasons I tried this project: First, I needed to apply all the html, css, and node documentation I had been reading. Second, the current result's email is a screenshot of the leaderboard, which isn't exactly congruent with the company's polished image. Third, based on [this data](http://www.campaignmonitor.com/resources/will-it-work/email-clients/), it seems like making the formatting more mobile-friendly could add some value. 
 
@@ -10,13 +10,13 @@ There were three reasons I tried this project: First, I needed to apply all the 
 **Checkpoints in the Project:**
 
 - [X] Create html template using [antwort's](http://internations.github.io/antwort/) guidelines that replicates the PR departments current style. 
-- [x] Convert the html template to a Jade template for later use in generating the static email html. I used [html2jade](http://html2jade.com/) to turn his template into a starter jade file.
-- [] **Current Task** Style the template up and test it using Litmus. Mostly worried about Outlook.
+- [X] Convert the html template to a Jade template for later use in generating the static email html. I used [html2jade](http://html2jade.com/) to turn his template into a starter jade file.
+- [ ] **Current Task** Style the template up and test it using Litmus. Mostly worried about Outlook.
 - [ ] Use node.js to grab data from Nascar's json feed. Search for all the available practice results and present in a jqGrid sorted by most recent. Let the user select which event they want to prepare the email for.
 - [X] Combine the leaderboard.json feed with the jade template and save the resulting html to file.
-- [] Use [nodemailer](www.nodemailer.com) to mail the email to a single person for final review before forwarding it out.
-- [] Run npm init, or handbuild the package.json for deployment.
-- [] Optional- Make it so that you could prepare this for a library of drivers (you'd have to have sponsor logos for everything). Then this could be prepared for every series
+- [ ] Use [nodemailer](www.nodemailer.com) to mail the email to a single person for final review before forwarding it out.
+- [ ] Run npm init, or handbuild the package.json for deployment.
+- [ ] Optional- Make it so that you could prepare this for a library of drivers (you'd have to have sponsor logos for everything). Then this could be prepared for every series
 
  **REMINDER:** Make it so that the webpage is 100% on mobile screens. Make sure all background colors are specified in 6 digit hex. That works the best. 
 
