@@ -75,8 +75,8 @@ html(lang='en')
                           each driver, i in leaderboard.Passings
                             if driver.Driver.DriverName === "Brad Keselowski"
                               - var firstPlace = driver.RaceRank
-                              - var Speed = driver.BestSpeed
-                              - var fastTime = driver.BestTime
+                              - var Speed = (driver.BestSpeed).toFixed(2)
+                              - var fastTime = (driver.BestTime).toFixed(2)
                               td(width=format.halfWidth)
                                 table(width="100%")
                                   tr
@@ -84,14 +84,14 @@ html(lang='en')
                                     td(style="text-align: center")= ordNumber(firstPlace)
                                   tr
                                     td: b Speed
-                                    td(style="text-align: center")= Speed + " miles per hour"
+                                    td(style="text-align: center")= Speed + " MPH"
                                   tr
                                     td: b Time
                                     td(style="text-align: center")= fastTime + " Seconds"
                             if driver.Driver.DriverName === "Joey Logano"
                               - var firstPlace = driver.RaceRank
-                              - var Speed = driver.BestSpeed
-                              - var fastTime = driver.BestTime
+                              - var Speed = (driver.BestSpeed).toFixed(2)
+                              - var fastTime = (driver.BestTime).toFixed(2)
                               td(width=format.halfWidth)
                                 table(width="100%")
                                   tr
@@ -99,7 +99,7 @@ html(lang='en')
                                     td(style="text-align: center")= ordNumber(firstPlace)
                                   tr
                                     td: b Speed
-                                    td(style="text-align: center")= Speed + " miles per hour"
+                                    td(style="text-align: center")= Speed + " MPH"
                                   tr
                                     td: b Time
                                     td(style="text-align: center")= fastTime + " Seconds"
@@ -134,8 +134,8 @@ html(lang='en')
                             td= driver.CarNo
                             td= driver.Driver.DriverName
                             td= driver.Sponsor
-                            td= driver.BestTime
-                            td= driver.BestSpeed
+                            td= (driver.BestTime).toFixed(2)
+                            td= (driver.BestSpeed).toFixed(2)
                             td= driver.BestLap
                             td= driver.LapCount
                             td= "Delta"                              
