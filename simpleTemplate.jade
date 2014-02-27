@@ -138,8 +138,11 @@ html(lang='en')
                             td= (driver.BestSpeed).toFixed(2)
                             td= driver.BestLap
                             td= driver.LapCount
-                            td= "Delta"                              
-                            td= "Delta"
+                            //- Trick used below, for the first place person, in array position 0, it's made to return " - "
+                            - var fastestDelta = i?(leaderboard.Passings[0].BestTime-leaderboard.Passings[i].BestTime).toFixed(2):"--"
+                            - var nextDelta = i?(leaderboard.Passings[i].BestTime-leaderboard.Passings[i-1].BestTime).toFixed(2):"--"
+                            td= fastestDelta
+                            td= nextDelta
 
                   //- Contact Info
                   tr(style="background: black; color: white; font-size: 8pt"): td: b CONTACT INFO
