@@ -5,7 +5,7 @@ The goal of this quick project is to automatically send out a result's email aft
 
 There were three reasons I tried this project: First, I needed to apply all the html, css, and node documentation I had been reading. Second, the current result's email is a screenshot of the leaderboard, which isn't exactly congruent with the company's polished image. Third, based on [this data](http://www.campaignmonitor.com/resources/will-it-work/email-clients/), it seems like making the formatting more mobile-friendly could add some value. 
 
-**Currently Working On:** The jade template is correctly importing the leaderboard.json. It now correctly loads the results for the two drivers, changes the comments based on the track and what practice it is. Now I need to add the appropriate table borders. Then it's onto the actual node.js part of grabbing all the possible json's and populating a jqGrid with what's avialable.
+**Currently Working On:** Finalize table border formatting. Save the index.html out and strip out all the unnecessary formatting, then try to mark up the style. Then it's onto the actual node.js part of grabbing all the possible json's and populating a jqGrid with what's avialable.
 
 **Checkpoints in the Project:**
 
