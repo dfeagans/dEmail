@@ -46,7 +46,7 @@ html(lang='en')
               td.container-padding(bgcolor=format.backgroundColor, style='background-color:' + format.backgroundColor +  '; padding-left: 30px; padding-right: 30px; font-size: 14px; line-height: 20px; font-family: ' + format.font + '; color: ' + format.fontColor + ';')
                 br
                 //- BEGIN CONTENT
-                table(border="2px", style="border-collapse:collapse; border-color:black")
+                table(border="1px", style="border-collapse:collapse; border-color:black")
                   //- Logo Images
                   tr 
                     td(style="background: black"): img(src="images/image002.jpg" alt="Team Penske" width="540" align="center")
@@ -70,7 +70,7 @@ html(lang='en')
                   - }
                   tr
                     td
-                      table
+                      table(style="border-collapse:collapse")
                         tr
                           each driver, i in leaderboard.Passings
                             if driver.Driver.DriverName === "Brad Keselowski"
@@ -78,7 +78,7 @@ html(lang='en')
                               - var Speed = (driver.BestSpeed).toFixed(2)
                               - var fastTime = (driver.BestTime).toFixed(2)
                               td(width=format.halfWidth)
-                                table(width="100%")
+                                table(width="100%", border="1px")
                                   tr
                                     td: b Finished
                                     td(style="text-align: center")= ordNumber(firstPlace)
@@ -93,7 +93,7 @@ html(lang='en')
                               - var Speed = (driver.BestSpeed).toFixed(2)
                               - var fastTime = (driver.BestTime).toFixed(2)
                               td(width=format.halfWidth)
-                                table(width="100%")
+                                table(width="100%",border="1px")
                                   tr
                                     td: b Finished
                                     td(style="text-align: center")= ordNumber(firstPlace)
