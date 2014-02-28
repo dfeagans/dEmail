@@ -46,7 +46,7 @@ html(lang='en')
               td.container-padding(bgcolor=format.backgroundColor, style='background-color:' + format.backgroundColor +  '; padding-left: 30px; padding-right: 30px; font-size: 14px; line-height: 20px; font-family: ' + format.font + '; color: ' + format.fontColor + ';')
                 br
                 //- BEGIN CONTENT
-                table(border="2px", style="border-collapse:collapse;")
+                table(border="2px", style="border-collapse:collapse; border-color:black")
                   //- Logo Images
                   tr 
                     td(style="background: black"): img(src="images/image002.jpg" alt="Team Penske" width="540" align="center")
@@ -61,7 +61,7 @@ html(lang='en')
                         td(width=format.halfWidth): img(src="images/image004.png" alt="Pennzoil")
                       tr
                         td(style="text-align: center; color: " + format.millerColor + "; font-size: 10pt"): b The No. 2 Miller Lite Ford Fusion
-                        td(style="text-align: center; color: red; font-size: 10p"): b The No. 22 Shell-Pennzoil Ford Fusion
+                        td(style="text-align: center; color: red; font-size: 10pt"): b The No. 22 Shell-Pennzoil Ford Fusion
                   //- Indidivual Car Results
                   - var ordNumber = function(n){
                   - var s=["th","st","nd","rd"]
