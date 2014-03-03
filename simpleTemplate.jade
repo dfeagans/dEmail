@@ -106,7 +106,7 @@ html(lang='en')
                   //- Full Series Results
                   tr
                     td
-                      table(width="100%" style="font-size: 8pt; border-color:black; border-collapse: collapse" border="1px")
+                      table(width="100%" style="font-size: 8pt; border-color:black; border-collapse:collapse" border="1px")
                         //- Individual Car Headings
                         tr
                           th: b Pos
@@ -140,7 +140,7 @@ html(lang='en')
                             - var fastestDelta = i?(leaderboard.Passings[0].BestTime-leaderboard.Passings[i].BestTime).toFixed(2):"--"
                             - var nextDelta = i?(leaderboard.Passings[i].BestTime-leaderboard.Passings[i-1].BestTime).toFixed(2):"--"
                             td(style="text-align: center")= fastestDelta
-                            td(style="text-align: center")= nextDelta
+                            td(style="text-align: center")= "-" + nextDelta
 
                   //- Contact Info
                   tr(style="background: black; color: white; font-size: 8pt"): td(style="padding-left:" + format.leftPadding height="17px"): b CONTACT INFO
