@@ -1,6 +1,6 @@
 //- The object literal below has to be on one line because Jade doesn't support multi-line javascript.
 //- The format object is used to allow all the inline formatting to be controlled in one place. Quick... and dirty.
-- var format = {font: 'Arial, sans serif', fontColor: '#333', perimeterColor: '#ebebeb', backgroundColor: '#ffffff', millerColor: "#1F497D", width: 600, sidePadding: 30, get halfWidth () {return (this.width-2*this.sidePadding)/2}, standardHeight: 50, get halfHeight () {return (this.standardHeight/2)}}
+- var format = {font: 'Arial, sans serif', fontColor: '#333', perimeterColor: '#ebebeb', backgroundColor: '#ffffff', millerColor: "#1F497D", width: 600, sidePadding: 30, get halfWidth () {return (this.width-2*this.sidePadding)/2}, standardHeight: 50, get halfHeight () {return (this.standardHeight/2)}, leftPadding:"10px"};
 
 doctype strict
 html(lang='en')
@@ -44,7 +44,7 @@ html(lang='en')
               td.container-padding(bgcolor=format.backgroundColor, style='background-color:' + format.backgroundColor +  '; padding-left: 30px; padding-right: 30px; font-size: 14px; line-height: 20px; font-family: ' + format.font + '; color: ' + format.fontColor + ';')
                 br
                 //- BEGIN CONTENT
-                table(border="1px", style="border-collapse:collapse; border-color:black" cellpadding='0')
+                table(border="1px" style="border-collapse:collapse; border-color:black" cellpadding='0', cellspacing="0")
                   //- Logo Images
                   tr 
                     td(style="background: black"): img(src="images/image002.jpg" alt="Team Penske" width="540" align="center")
@@ -52,13 +52,13 @@ html(lang='en')
                   tr(height=format.standardHeight)
                     td(style="text-align: center; font-size: 15pt; color: white; background: black"): b Sprint Cup Series Report
                   //- Car Logos and Names 
-                  tr(height="100")
+                  tr
                     td: table(style="text-align: center")
                       tr
-                        td(width=format.halfWidth): img(src="images/image003.jpg" alt="Miller Lite")
-                        td(width=format.halfWidth): img(src="images/image004.png" alt="Pennzoil")
+                        td(width=format.halfWidth style="border-right:1px solid black;padding-top:5px"): img(src="images/image003.jpg" alt="Miller Lite")
+                        td(width=format.halfWidth style="padding-top:5px"): img(src="images/image004.png" alt="Pennzoil")
                       tr
-                        td(style="text-align: center; color: " + format.millerColor + "; font-size: 10pt"): b The No. 2 Miller Lite Ford Fusion
+                        td(style="border-right:1px solid black; text-align: center; color: " + format.millerColor + "; font-size: 10pt"): b The No. 2 Miller Lite Ford Fusion
                         td(style="text-align: center; color: red; font-size: 10pt"): b The No. 22 Shell-Pennzoil Ford Fusion
                   //- Indidivual Car Results
                   - var ordNumber = function(n){
@@ -68,7 +68,7 @@ html(lang='en')
                   - }
                   tr
                     td
-                      table(style="border-collapse:collapse")
+                      table(style="border-collapse:collapse", cellpadding='0')
                         tr
                           each driver, i in leaderboard.Passings
                             if driver.Driver.DriverName === "Brad Keselowski"
@@ -78,14 +78,14 @@ html(lang='en')
                               td(width=format.halfWidth)
                                 table(width="100%")
                                   tr
-                                    td: b Finished
-                                    td(style="text-align: center")= ordNumber(firstPlace)
+                                    td(style="padding-left:" + format.leftPadding): b Finished
+                                    td(style="text-align: center; border-right: 1px solid black")= ordNumber(firstPlace)
                                   tr
-                                    td: b Speed
-                                    td(style="text-align: center")= Speed + " MPH"
+                                    td(style="padding-left:" + format.leftPadding): b Speed
+                                    td(style="text-align: center; border-right: 1px solid black")= Speed + " MPH"
                                   tr
-                                    td: b Time
-                                    td(style="text-align: center")= fastTime + " Seconds"
+                                    td(style="padding-left:" + format.leftPadding): b Time
+                                    td(style="text-align: center; border-right: 1px solid black")= fastTime + " Seconds"
                             if driver.Driver.DriverName === "Joey Logano"
                               - var firstPlace = driver.RaceRank
                               - var Speed = (driver.BestSpeed).toFixed(2)
@@ -93,13 +93,13 @@ html(lang='en')
                               td(width=format.halfWidth)
                                 table(width="100%")
                                   tr
-                                    td: b Finished
+                                    td(style="padding-left:" + format.leftPadding): b Finished
                                     td(style="text-align: center")= ordNumber(firstPlace)
                                   tr
-                                    td: b Speed
+                                    td(style="padding-left:" + format.leftPadding): b Speed
                                     td(style="text-align: center")= Speed + " MPH"
                                   tr
-                                    td: b Time
+                                    td(style="padding-left:" + format.leftPadding): b Time
                                     td(style="text-align: center")= fastTime + " Seconds"
                   //- Black Divider
                   tr: td(style="background: black; text-align: center; font-size: 15pt; color: white;" height = format.standardHeight): b #{leaderboard.TrackName + " " + leaderboard.RunName.slice(leaderboard.RunName.indexOf(" "))} 
