@@ -106,7 +106,7 @@ html(lang='en')
                   //- Full Series Results
                   tr
                     td
-                      table(width="100%" style="font-size: 8pt")
+                      table(width="100%" style="font-size: 8pt; border-color:black; border-collapse: collapse" border="1px")
                         //- Individual Car Headings
                         tr
                           th: b Pos
@@ -143,10 +143,10 @@ html(lang='en')
                             td(style="text-align: center")= nextDelta
 
                   //- Contact Info
-                  tr(style="background: black; color: white; font-size: 8pt"): td: b CONTACT INFO
-                  tr(style="background: black; color: white; font-size: 8pt"): td: i No. 2 Miller Lite Ford: Michael Ribas &nbsp;
+                  tr(style="background: black; color: white; font-size: 8pt"): td(style="padding-left:" + format.leftPadding height="17px"): b CONTACT INFO
+                  tr(style="background: black; color: white; font-size: 8pt"): td(style="padding-left:" + format.leftPadding height="17px"): i No. 2 Miller Lite Ford: Michael Ribas &nbsp;
                     a(href="mailto:michael.ribas@penskeracing.com" style = "color: white") michael.ribas@penskeracing.com
-                  tr(style="background: black; color: white; font-size: 8pt"): td: i No. 22 Shell-Pennzoil Ford: Jeremy Troiano &nbsp;
+                  tr(style="background: black; color: white; font-size: 8pt"): td(style="padding-left:" + format.leftPadding height="17px"): i No. 22 Shell-Pennzoil Ford: Jeremy Troiano &nbsp;
                     a(href="mailto:jeremy.troiano@penskeracing.com" style = "color:white") jeremy.troiano@penskeracing.com
                 br
                 br
