@@ -53,7 +53,7 @@ html(lang='en')
                     td(style="text-align: center; font-size: 15pt; color: white; background: black"): b Sprint Cup Series Report
                   //- Car Logos and Names 
                   tr
-                    td: table(style="text-align: center")
+                    td: table(style="text-align: center; border-left: 1px solid black; border-right: 1px solid black")
                       tr
                         td(width=format.halfWidth style="border-right:1px solid black;padding-top:5px"): img(src="images/image003.jpg" alt="Miller Lite")
                         td(width=format.halfWidth style="padding-top:5px"): img(src="images/image004.png" alt="Pennzoil")
@@ -75,7 +75,7 @@ html(lang='en')
                               - var firstPlace = driver.RaceRank
                               - var Speed = (driver.BestSpeed).toFixed(2)
                               - var fastTime = (driver.BestTime).toFixed(2)
-                              td(width=format.halfWidth)
+                              td(width=format.halfWidth style="border-left: 1px solid black")
                                 table(width="100%")
                                   tr
                                     td(style="padding-left:" + format.leftPadding): b Finished
@@ -90,7 +90,7 @@ html(lang='en')
                               - var firstPlace = driver.RaceRank
                               - var Speed = (driver.BestSpeed).toFixed(2)
                               - var fastTime = (driver.BestTime).toFixed(2)
-                              td(width=format.halfWidth)
+                              td(width=format.halfWidth style="border-right: 1px solid black")
                                 table(width="100%")
                                   tr
                                     td(style="padding-left:" + format.leftPadding): b Finished
