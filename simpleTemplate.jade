@@ -130,8 +130,8 @@ html(lang='en')
                           tr(style = "background: " + rowStyle)
                             td(style="text-align: center")= i+1
                             td(style="text-align: center")= driver.CarNo
-                            td= driver.Driver.DriverName
-                            td= driver.Sponsor
+                            td(style="padding-left:4px")= driver.Driver.DriverName
+                            td(style="padding-left:4px")= driver.Sponsor
                             td(style="text-align: center")= (driver.BestTime).toFixed(2)
                             td(style="text-align: center")= (driver.BestSpeed).toFixed(2)
                             td(style="text-align: center")= driver.BestLap
