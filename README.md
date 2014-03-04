@@ -5,7 +5,7 @@ The goal of this quick project is to automatically send out a result's email aft
 
 There were three reasons I tried this project: First, I needed to apply all the html, css, and node documentation I had been reading. Second, the current result's email is a screenshot of the leaderboard, which isn't exactly congruent with the company's polished image. Third, based on [this data](http://www.campaignmonitor.com/resources/will-it-work/email-clients/), it seems like making the formatting more mobile-friendly could add some value. 
 
-**Currently Working On:** Create a node.js program that grabs the currently available leaderboard.json.
+**Currently Working On:** Create a node.js program that grabs the currently available leaderboard.json. This needs to be done when NASCAR practices are on, in the meantime, work on setting up nodemailer.
 
 **Checkpoints in the Project:**
 
