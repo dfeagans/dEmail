@@ -1,0 +1,23 @@
+{
+  "name": "dEmail",
+  "version": "0.0.0",
+  "description": "Automatically emails formatted NASCAR practice results highlighting specific drivers.",
+  "main": "dEmail.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dfeagans/dEmail.git"
+  },
+  "author": "dfeagans",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/dfeagans/dEmail/issues"
+  },
+  "homepage": "https://github.com/dfeagans/dEmail",
+  "dependencies": {
+    "nodemailer": "~0.6.1",
+    "jade": "~1.3.0"
+  }
+}
