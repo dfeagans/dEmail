@@ -1,0 +1,7 @@
+# .gitignore
+# Ignore's the smtpConfig.json file 
+smtpConfig.json
+# Ignore's my development web-host file.
+web.js
+# Ignore all emacs backup files.
+*~
