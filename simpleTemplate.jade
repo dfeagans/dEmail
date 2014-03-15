@@ -138,7 +138,7 @@ html(lang='en')
                             td(style="text-align: center")= driver.LapCount
                             //- Trick used below, for the first place person, in array position 0, it's made to return " - "
                             - var fastestDelta = i?(leaderboard.Passings[0].BestTime-leaderboard.Passings[i].BestTime).toFixed(2):"--"
-                            - var nextDelta = i?(leaderboard.Passings[i].BestTime-leaderboard.Passings[i-1].BestTime).toFixed(2):"--"
+                            - var nextDelta = i?(leaderboard.Passings[i].BestTime-leaderboard.Passings[i-1].BestTime).toFixed(2):"-"
                             td(style="text-align: center")= fastestDelta
                             td(style="text-align: center")= "-" + nextDelta
 
