@@ -16,6 +16,7 @@ There were three reasons I tried this project: First, I needed to apply all the 
 - [X] Combine the leaderboard.json feed with the jade template and ~~save the resulting html to file~~. email the html with images as integrated attachments.
 - [ ] Test it using Litmus. Mostly worried about Outlook.
 - [X] Use [nodemailer](www.nodemailer.com) to mail the email to a single person for final review before forwarding it out.
+- [X] Create simple way to trigger the email being sent. dev.okdane.com/RequestResults?email=FirstPartOfEmail triggers it to be sent, but you have to be on the approved list.
 
  **REMINDER:** Make it so that the webpage is 100% on mobile screens. Make sure all background colors are specified in 6 digit hex. That works the best. 
 
@@ -24,4 +25,6 @@ There were three reasons I tried this project: First, I needed to apply all the 
 
 **Final Phase**
 - Add more signal, less noise. This available is already available on the internet. It's nice to have it sent to your inbox, but add more value to it. Possibly do statistical analysis on all previous practices at that track and our finish and predict probabilities of finishing in top 10, top 5, or winning.
+- Make it able to focus on specific cars and more/less than the current two cars. The in the GET request you could send a query parameter with the list of cars.
+- Come up with a better way of integrating the gmail account to send the emails and an easier way to maintain the approved list of email recipients that can make the request.
 
