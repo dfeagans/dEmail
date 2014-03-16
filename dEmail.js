@@ -57,7 +57,7 @@ transport.sendMail(message, function(error){
     transport.close(); // close the connection pool
 });
 
-/**********
+/**********  THIS USED FOR DEVELOPINGTHE FORMAT. I WAS SAVING THE POST-PROCESSED HTML TO INDEX.HTML FOR VIEWING. WORKS WELL WITH THE WEB.JS STATIC SERVER.
 
 fs.writeFile('index.html', html, function(err){
     util.log("index.html created");
