@@ -26,7 +26,21 @@ var message = {
     subject: 'Team Penske ' + leaderboard.TrackName + ' Cup Series Practice Update',
     html: htmlContent,
     attachments:[
-	
+	{
+	    fileName: 'image002.jpg',
+	    filePath: 'images/image002.jpg',
+	    cid: "image002_Title"
+	},
+	{
+	    fileName: 'image003.jpg',
+	    filePath: 'images/image003.jpg',
+	    cid: "image003_Miller"
+	},
+	{
+	    fileName: 'image004.png',
+	    filePath: 'images/image004.png',
+	    cid: "image004_Pennzoil"
+	}
     ]
 };
 
