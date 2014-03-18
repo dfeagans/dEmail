@@ -1,4 +1,19 @@
 #!/usr/bin/env node
+/*
+The config.json file separates the email address username and password that the emails will be sent from. It also contains a list of approved emails to send to. Each approved email can be pulled out using an identifier. It must be a JSON formatted as follows:
+{
+    "email": {
+        "user": "emailAddresstoSendFrom@email.com",
+	"password": "unbelievablyStrongPasswordForYourAccount"
+    },
+    "approvedEmails": {
+        "identifier1": "fullEmail@1.com"
+        "identifier2": "fullEmail@2.com"
+        "identifier3": "fullEmail@3.com"
+    }
+}
+
+*/
 
 var http = require('http');
 var url = require('url');
