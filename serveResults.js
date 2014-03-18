@@ -2,8 +2,8 @@
 
 var http = require('http');
 var url = require('url');
-var util = require('util');
 var sendResults = require('./dEmail.js');
+var config = require('./config.json');
 
 http.createServer(function (request, response) {
     var target = url.parse(request.url, true);
@@ -12,7 +12,7 @@ http.createServer(function (request, response) {
     var displayMessage = undefined;
     
     if (target.pathname === '/RequestResults') {
-	var emailAddress = approvedEmailList(emailName);
+	var emailAddress = config.approvedEmails[emailName];
 	if (emailAddress){
 	    if (raceID){
 		http.get('http://www.nascar.com/leaderboard/Series_1/2014/' + raceID  + '/1/leaderboard.json', function(){
@@ -39,14 +39,4 @@ http.createServer(function (request, response) {
 
 function getMostRecentLeaderboard(){
     return "TEST"
-}
-
-function approvedEmailList(emailLocalPart){
-
-    var approvedEmails = {
-	dEmail500: 'dEmail500@gmail.com'
-	
-    };
-        
-    return approvedEmails[emailLocalPart];
 }

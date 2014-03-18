@@ -6,3 +6,5 @@ web.js
 # Ignore the node_modules. I've kepy the dependencies updated in the package.json, so install them using npm install, not pulling them down github. That methods a waste of space.
 node_modules
 leaderboard.json
+# This is the configuration file that defines the Gmail address that will be used to send the email. It also defines the approved list of recipients.
+config.json

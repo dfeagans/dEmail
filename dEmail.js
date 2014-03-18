@@ -1,7 +1,12 @@
+//This function sends the NASCAR leaderboard in a custom formatted email.
+//It may be called from the command line using "node dEmail <COMPLETE_EMAIL_ADDRESS>"
+//It's also exposed for use as a library, just "var dEmail = require('./dEmail.js')" and then dEmail(<COMPLETE_EMAIL_ADDRESS>);
+
 var fs = require('fs');
 var jade = require('jade');
 var nodemailer = require('nodemailer');
 var EMAIL_TARGET_DEFAULT = "dEmail500@gmail.com"
+var config = require('./config.json');
 
 var emailResults = function(emailAddress){
     "use strict";
@@ -10,8 +15,8 @@ var emailResults = function(emailAddress){
     var transport = nodemailer.createTransport("SMTP", {
 	service: 'Gmail',
 	auth: {
-	    user: "dEmail500@gmail.com",
-	    pass: ""
+	    user: config.email.user,
+	    pass: config.email.password
 	}
     });
 
