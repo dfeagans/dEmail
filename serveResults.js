@@ -30,13 +30,14 @@ http.createServer(function (request, response) {
 	var emailAddress = config.approvedEmails[emailName];
 	if (emailAddress){
 	    if (raceID){
-		http.get('http://www.nascar.com/leaderboard/Series_1/2014/' + raceID  + '/1/leaderboard.json', function(){
-		    
+		console.log('Got Leaderboard for RaceID: ' + raceID)
+//		http.get('http://www.nascar.com/leaderboard/Series_1/2014/' + raceID  + '/1/leaderboard.json', function(){
 
-		});
+//		});
+
 	    }
 	    else {
-		getMostRecentLeaderboard;
+		getCurrentLeaderboard();
 	    }
 	    sendResults(emailAddress);
 	    displayMessage = "Results sent to " + emailAddress;
@@ -52,6 +53,6 @@ http.createServer(function (request, response) {
 }).listen(8080);
 
 
-function getMostRecentLeaderboard(){
-    return "TEST"
+function getCurrentLeaderboard(){
+    console.log("Grabbed Current Leaderboard");
 }
