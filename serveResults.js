@@ -77,6 +77,7 @@ function getLeaderboard(raceRequest, callback){
     });
 }
 
-function getCurrentLeaderboard(){
-    console.log("Grabbed Current Leaderboard");
+function getCurrentLeaderboard(callback){
+    var err;
+    return callback(err);
 }
