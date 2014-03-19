@@ -17,6 +17,7 @@ There were three reasons I tried this project: First, I needed to apply all the 
 - [ ] Test it using Litmus. Mostly worried about Outlook.
 - [X] Use [nodemailer](www.nodemailer.com) to mail the email to a single person for final review before forwarding it out.
 - [X] Create simple way to trigger the email being sent. dev.okdane.com/RequestResults?email=FirstPartOfEmail triggers it to be sent, but you have to be on the approved list.
+- [X]- Come up with a better way of integrating the gmail account to send the emails and an easier way to maintain the approved list of email recipients that can make the request.
 
  **REMINDER:** Make it so that the webpage is 100% on mobile screens. Make sure all background colors are specified in 6 digit hex. That works the best. 
 
@@ -24,7 +25,5 @@ There were three reasons I tried this project: First, I needed to apply all the 
 - One of the big problems with html emails is that you can't use CSS and that most email clients only render the inline style attributes. The antwort guide advises against using a style inliner, but it was a huge pain doing everything inline. Atleast try the inliner next time. There were several times where a certain font sized didn't look write. So I only had to change it one place, I made an object called format at the top of the template that had things like titleSize : "15pt" for example. Then I could use format.titleSize all over the place.
 
 **Final Phase**
-- Add more signal, less noise. This available is already available on the internet. It's nice to have it sent to your inbox, but add more value to it. Possibly do statistical analysis on all previous practices at that track and our finish and predict probabilities of finishing in top 10, top 5, or winning.
+- Add more signal, less noise. This available is already available on the internet. It's nice to have it sent to your inbox, but add more value to it. Possibly do statistical analysis on all previous practices at that track and our finish and predict probabilities of finishing in top 10, top 5, or winning. Another good idea would be to show the 2 lap average, 5 lap average, and 10 lap average for each fo the cars that did runs long enough to calculate them.
 - Make it able to focus on specific cars and more/less than the current two cars. The in the GET request you could send a query parameter with the list of cars.
-- Come up with a better way of integrating the gmail account to send the emails and an easier way to maintain the approved list of email recipients that can make the request.
-
