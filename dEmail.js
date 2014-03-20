@@ -5,14 +5,14 @@
 var fs = require('fs');
 var jade = require('jade');
 var nodemailer = require('nodemailer');
-var EMAIL_TARGET_DEFAULT = "dEmail500@gmail.com"
+var EMAIL_TARGET_DEFAULT = 'dEmail500@gmail.com';
 var config = require('./config.json');
 
 var emailResults = function(emailAddress){
     "use strict";
     var emailTarget = emailAddress || EMAIL_TARGET_DEFAULT;
 
-    var transport = nodemailer.createTransport("SMTP", {
+    var transport = nodemailer.createTransport('SMTP', {
 	service: 'Gmail',
 	auth: {
 	    user: config.email.user,
@@ -36,17 +36,17 @@ var emailResults = function(emailAddress){
 	    {
 		fileName: 'image002.jpg',
 		filePath: 'images/image002.jpg',
-		cid: "image002_Title"
+		cid: 'image002_Title'
 	    },
 	    {
 		fileName: 'image003.jpg',
 		filePath: 'images/image003.jpg',
-		cid: "image003_Miller"
+		cid: 'image003_Miller'
 	    },
 	    {
 		fileName: 'image004.png',
 		filePath: 'images/image004.png',
-		cid: "image004_Pennzoil"
+		cid: 'image004_Pennzoil'
 	    }
 	]
     };

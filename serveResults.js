@@ -1,6 +1,9 @@
 #!/usr/bin/env node
 /*
-The config.json file separates the email address username and password that the emails will be sent from. It also contains a list of approved emails to send to. Each approved email can be pulled out using an identifier. It must be a JSON formatted as follows:
+The config.json file separates the email address username and password that the emails will be sent from.
+It also contains a list of approved emails to send to. Each approved email can be pulled out using an identifier.
+
+The config.json file must be in the below format:
 {
     "email": {
 	"user": "emailAddresstoSendFrom@email.com",
@@ -50,9 +53,9 @@ http.createServer(function (request, response) {
 		    }
 		});
 	    }
-	    displayMessage = "Results sent to " + emailAddress;
+	    displayMessage = 'Results sent to ' + emailAddress;
 	} else {
-	    displayMessage = "Email Not Approved";
+	    displayMessage = 'Email Not Approved';
 	}
     } else {
 	displayMessage = 'Please use dev.okdane.com/RequestResults?email=identifier syntax';
