@@ -29,78 +29,38 @@ http.createServer(function (request, response) {
     var target = url.parse(request.url, true);
     var emailName = target.query.email;
     var raceID = target.query.raceID;
-    var displayMessage;
 
-    if (target.pathname === '/favicon.ico') {
-	displayMessage = "Favicon Requested";
-    } else if (target.pathname === '/RequestResults') {
+    if (target.pathname === '/RequestResults') {
 	console.log("\ndEmail Test");
 	var emailAddress = config.approvedEmails[emailName];
-	if (emailAddress) {
-	    async.waterfall([
-		function(callback){
-		    //Part 1 determines the correct RaceID to use
-		    if (raceID) {
-			return callback(null, raceID);
-		    } else {
-			getCurrentLeaderboard(function(err, newRaceID){
-			    return callback(null,newRaceID);
-			});
-		    }
-		},
-		function(properRaceID, callback){
-		    //Part 2 actually tries to get the JSON data
-		    getLeaderboard(properRaceID, function(err){
-			return callback(null);
-		    });
-		},
-		function(callback){
-		    //Part 3 actually sends the email
-		    sendResults(emailAddress);
-		    return callback(null);
+	async.waterfall([
+	    function(callback){
+		//Part 1 makes sure it's a valid request and if so, determines the correct RaceID to use
+		if (!emailAddress) {
+		    return callback('Email Not Approved');
 		}
-	    ], function(err, result){
-		//The final part catches any errors and displays them back to the user.
-		displayMessage = result;
-		response.writeHead(200, { 'Content-Type': 'text/plain' });
-		console.log("END: " + displayMessage);
-		response.end(displayMessage);
-	    });
-
-/****************ORIGINAL MISSING FLOW CONTROL*************************
-	    if (raceID) {
-		getLeaderboard(raceID, function(err){
-		    if (err) {
-			displayMessage=err;
-			console.log("2: ErrorMessage: " + displayMessage);
-		    }
-		    else {
-			sendResults(emailAddress);
-		    }
-		});
-	    } else {
-		getCurrentLeaderboard(function(err){
-		    if (err) {
-			displayMessage=err;
-		    }
-		    else {
-			sendResults(emailAddress);
-		    }
-		});
+		if (raceID) {
+		    return callback(null, raceID);
+		} else {
+		    //I think the function below can just be replaced with callback.
+		    getCurrentRaceID(callback);
+		}
+	    },
+	    function(properRaceID, callback){
+		//Part 2 actually tries to get the JSON data
+		getLeaderboard(properRaceID, callback);
+	    },
+	    function(callback){
+		//Part 3 actually sends the email
+		sendResults(emailAddress);
+		return callback(null, 'Email Sent to: ' + emailAddress);
 	    }
-	    displayMessage = 'Results sent to ' + emailAddress;
-	    console.log("3: " + displayMessage);
-*/
-	} else {
-	    displayMessage = 'Email Not Approved';
-	}
-    } else {
-	displayMessage = 'Please use dev.okdane.com/RequestResults?email=identifier syntax';
+	], function(err, result){
+	    //The final part catches any errors and displays them back to the user.
+	    response.writeHead(200, { 'Content-Type': 'text/plain' });
+	    response.end(result);
+	});
     }
-
-    response.writeHead(200, { 'Content-Type': 'text/plain' });
-    console.log("4: " + displayMessage);
-    response.end(displayMessage);
 }).listen(8080);
 
 function getLeaderboard(raceRequest, callback){
@@ -112,7 +72,7 @@ function getLeaderboard(raceRequest, callback){
 	});
 	response.on('end', function(){
 	    fs.writeFile('leaderboard.json', leaderboardJSON, function (err){
-		console.log('1: Got Leaderboard for RaceID: ' + raceRequest);
+		console.log('Got Leaderboard for RaceID: ' + raceRequest);
 		if (response.statusCode === 404) {
 		    errMessage = 'RaceID (' + raceRequest +') Not Found @: ' + 'http://www.nascar.com/leaderboard/Series_1/2014/' + raceRequest  + '/1/leaderboard.json';
 		}
@@ -120,12 +80,6 @@ function getLeaderboard(raceRequest, callback){
 	    });
 	});
     });
-}
-
-function getCurrentLeaderboard(callback){
-    var err;
-    var currentRaceID = 4284;
-    return callback(err, currentRaceID);
 }
 
 function range(start, end) {
@@ -143,11 +97,7 @@ function getCurrentRaceID(callback){
     var currentID;
 
     //There are 36 races a season, I just use 40 to be safe due to the all-star race and tests.
-    var raceList = range(seedRaceID, seedRaceID + 40);
-
-
-
-
+    var raceList = range(seedRaceID, seedRaceID + 3);
     currentID = Math.max.apply(Math,raceList);
     return callback(err, currentID);
 }

@@ -63,7 +63,7 @@ var emailResults = function(emailAddress){
 	transport.close();
     });
 
-    /**********  THIS USED FOR DEVELOPINGTHE FORMAT. I WAS SAVING THE POST-PROCESSED HTML TO INDEX.HTML FOR VIEWING. WORKS WELL WITH THE WEB.JS STATIC SERVER.
+    /**********  THIS USED FOR DEVELOPING THE FORMAT. I WAS SAVING THE POST-PROCESSED HTML TO INDEX.HTML FOR VIEWING. WORKS WELL WITH THE WEB.JS STATIC SERVER.
 		 fs.writeFile('index.html', html, function(err){
 		 util.log("index.html created");
 		 if (err) {
