@@ -21,6 +21,7 @@ The config.json file must be in the below format:
 var http = require('http');
 var url = require('url');
 var fs = require('fs');
+var async = require('async');
 var sendResults = require('./dEmail.js');
 var config = require('./config.json');
 
@@ -29,21 +30,24 @@ http.createServer(function (request, response) {
     var emailName = target.query.email;
     var raceID = target.query.raceID;
     var displayMessage;
-
-    if (target.pathname === '/RequestResults') {
+    
+    if (target.pathname === '/favicon.ico') {
+	displayMessage = "Favicon Requested";
+    } else if (target.pathname === '/RequestResults') {
+	console.log("\ndEmail Test")
 	var emailAddress = config.approvedEmails[emailName];
 	if (emailAddress) {
 	    if (raceID) {
 		getLeaderboard(raceID, function(err){
 		    if (err) {
 			displayMessage=err;
+			console.log("2: ErrorMessage: " + displayMessage);
 		    }
 		    else {
 			sendResults(emailAddress);
 		    }
 		});
-	    }
-	    else {
+	    } else {
 		getCurrentLeaderboard(function(err){
 		    if (err) {
 			displayMessage=err;
@@ -54,6 +58,7 @@ http.createServer(function (request, response) {
 		});
 	    }
 	    displayMessage = 'Results sent to ' + emailAddress;
+	    console.log("3: " + displayMessage);
 	} else {
 	    displayMessage = 'Email Not Approved';
 	}
@@ -62,19 +67,24 @@ http.createServer(function (request, response) {
     }
 
     response.writeHead(200, { 'Content-Type': 'text/plain' });
+    console.log("4: " + displayMessage);
     response.end(displayMessage);
 }).listen(8080);
 
 function getLeaderboard(raceRequest, callback){
     var leaderboardJSON = '';
+    var errMessage;
     http.get('http://www.nascar.com/leaderboard/Series_1/2014/' + raceRequest  + '/1/leaderboard.json', function(response){
 	response.on('data', function(chunk){
 	    leaderboardJSON += chunk;
 	});
 	response.on('end', function(){
 	    fs.writeFile('leaderboard.json', leaderboardJSON, function (err){
-		console.log('Got Leaderboard for RaceID: ' + raceRequest);
-		return callback(err);
+		console.log('1: Got Leaderboard for RaceID: ' + raceRequest);
+		if (response.statusCode === 404) {
+		    errMessage = 'RaceID (' + raceRequest +') Not Found @: ' + 'http://www.nascar.com/leaderboard/Series_1/2014/' + raceRequest  + '/1/leaderboard.json';
+		}
+		return callback(errMessage);
 	    });
 	});
     });
@@ -83,4 +93,44 @@ function getLeaderboard(raceRequest, callback){
 function getCurrentLeaderboard(callback){
     var err;
     return callback(err);
+}
+
+function range(start, end) {
+    var incArray = [];
+    for (var i = start; i <= end; i++) {
+	incArray.push(i);
+    }
+    return incArray;
+}
+
+function getCurrentRaceID(callback){
+    //Daytona was the first race of 2014, it's raceID was 4282.
+    var seedRaceID = 4282;
+    var err;
+    var currentID;
+    
+    //There are 36 races a season, I just use 40 to be safe due to the all-star race and tests.
+    var raceList = range(seedRaceID, seedRaceID + 40);
+    
+
+
+
+    currentID = Math.max.apply(Math,raceList);
+    return callback(err, currentID);
+}
+
+function raceAvailable(raceIDtoTest){
+    var options = {method: 'HEAD',
+		   host: 'www.nascar.com',
+		   post: 80,
+		   path: '/leaderboard/Series_1/2014/' + raceIDtoTest  + '/1/leaderboard.json'
+		  };
+    var req = http.request(options,function(res){
+	if (res.statusCode === 200) {
+	    return 1;
+	} else {
+	    return 0;
+	}
+    });
+    req.end();
 }
