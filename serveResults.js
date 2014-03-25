@@ -34,31 +34,35 @@ http.createServer(function (request, response) {
 	console.log("\ndEmail Test");
 	var emailAddress = config.approvedEmails[emailName];
 	async.waterfall([
+	    //Part 1 makes sure it's a valid request and if so, determines the correct RaceID to use
 	    function(callback){
-		//Part 1 makes sure it's a valid request and if so, determines the correct RaceID to use
 		if (!emailAddress) {
 		    return callback('Email Not Approved');
 		}
 		if (raceID) {
-		    return callback(null, raceID);
+		    console.log('raceID given.');		    
+		    callback(null, raceID);
 		} else {
-		    //I think the function below can just be replaced with callback.
+		    console.log('noRaceID given');
 		    getCurrentRaceID(callback);
 		}
 	    },
+	    //Part 2 actually tries to get the JSON data
 	    function(properRaceID, callback){
-		//Part 2 actually tries to get the JSON data
+		console.log("Part2");
 		getLeaderboard(properRaceID, callback);
 	    },
+	    //Part 3 actually sends the email
 	    function(callback){
-		//Part 3 actually sends the email
-		sendResults(emailAddress);
-		return callback(null, 'Email Sent to: ' + emailAddress);
+		console.log('PART 3 Send EMAIL');
+		sendResults(emailAddress, function(err){
+		    callback(err, 'Email Sent to: ' + emailAddress);
+		});
 	    }
 	], function(err, result){
 	    //The final part catches any errors and displays them back to the user.
 	    response.writeHead(200, { 'Content-Type': 'text/plain' });
-	    response.end(result);
+	    response.end(err || result);
 	});
     }
 }).listen(8080);
@@ -74,7 +78,7 @@ function getLeaderboard(raceRequest, callback){
 	    fs.writeFile('leaderboard.json', leaderboardJSON, function (err){
 		console.log('Got Leaderboard for RaceID: ' + raceRequest);
 		if (response.statusCode === 404) {
-		    errMessage = 'RaceID (' + raceRequest +') Not Found @: ' + 'http://www.nascar.com/leaderboard/Series_1/2014/' + raceRequest  + '/1/leaderboard.json';
+		    errMessage = 'RaceID (' + raceRequest +') Not Found @ ' + 'http://www.nascar.com/leaderboard/Series_1/2014/' + raceRequest  + '/1/leaderboard.json';
 		}
 		return callback(errMessage);
 	    });
@@ -97,7 +101,7 @@ function getCurrentRaceID(callback){
     var currentID;
 
     //There are 36 races a season, I just use 40 to be safe due to the all-star race and tests.
-    var raceList = range(seedRaceID, seedRaceID + 3);
+    var raceList = range(seedRaceID, seedRaceID + 40);
     currentID = Math.max.apply(Math,raceList);
     return callback(err, currentID);
 }
