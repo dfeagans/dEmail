@@ -8,7 +8,7 @@ var nodemailer = require('nodemailer');
 var EMAIL_TARGET_DEFAULT = 'dEmail500@gmail.com';
 var config = require('./config.json');
 
-var emailResults = function(emailAddress){
+var emailResults = function(emailAddress, cb){
     "use strict";
     var emailTarget = emailAddress || EMAIL_TARGET_DEFAULT;
 
@@ -19,8 +19,6 @@ var emailResults = function(emailAddress){
 	    pass: config.email.password
 	}
     });
-
-    console.log('SMTP Configured');
 
     var leaderboardStr = fs.readFileSync('leaderboard.json', 'utf8');
     var leaderboard = JSON.parse(leaderboardStr);
@@ -51,16 +49,9 @@ var emailResults = function(emailAddress){
 	]
     };
 
-    console.log('Sending Mail');
-
     transport.sendMail(message, function(error){
-	if(error){
-	    console.log('Error occured');
-	    console.log(error.message);
-	    return;
-	}
-	console.log('Message sent successfully!');
 	transport.close();
+	cb(error);
     });
 
     /**********  THIS USED FOR DEVELOPING THE FORMAT. I WAS SAVING THE POST-PROCESSED HTML TO INDEX.HTML FOR VIEWING. WORKS WELL WITH THE WEB.JS STATIC SERVER.
@@ -74,7 +65,14 @@ var emailResults = function(emailAddress){
 };
 
 if (require.main == module){
-    emailResults(process.argv[2]);
+    emailResults(process.argv[2], function(err){
+	if (err) {
+	    console.log(err.message);
+	}
+	else {
+	    console.log('EMAIL SENT');
+	}
+    });
 }
 
 module.exports = emailResults;
