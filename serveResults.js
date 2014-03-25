@@ -54,15 +54,13 @@ http.createServer(function (request, response) {
 	    },
 	    //Part 3 actually sends the email
 	    function(callback){
-		console.log('PART 3 Send EMAIL');
-		sendResults(emailAddress, function(err){
-		    callback(err, 'Email Sent to: ' + emailAddress);
-		});
+		console.log('PART 3 Send Email');
+		sendResults(emailAddress, callback);
 	    }
-	], function(err, result){
+	], function(err){
 	    //The final part catches any errors and displays them back to the user.
 	    response.writeHead(200, { 'Content-Type': 'text/plain' });
-	    response.end(err || result);
+	    response.end(err || 'Email Sent to: ' + emailAddress);
 	});
     }
 }).listen(8080);
