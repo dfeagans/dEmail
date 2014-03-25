@@ -100,22 +100,29 @@ function getCurrentRaceID(callback){
 
     //There are 36 races a season, I just use 40 to be safe due to the all-star race and tests.
     var raceList = range(seedRaceID, seedRaceID + 40);
+
     currentID = Math.max.apply(Math,raceList);
     return callback(err, currentID);
 }
 
-function raceAvailable(raceIDtoTest){
+function raceAvailable(raceIDtoTest, callback){
     var options = {method: 'HEAD',
 		   host: 'www.nascar.com',
 		   post: 80,
 		   path: '/leaderboard/Series_1/2014/' + raceIDtoTest  + '/1/leaderboard.json'
 		  };
+    
     var req = http.request(options,function(res){
 	if (res.statusCode === 200) {
-	    return 1;
+	    return callback(null, 1);
 	} else {
-	    return 0;
+	    return callback(null, 0);
 	}
     });
+    
+    req.on('error', function(err) {
+	return callback(err.message);
+    });
+    
     req.end();
 }
