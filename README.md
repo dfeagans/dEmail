@@ -1,7 +1,6 @@
-dEmail
+dEmail ![David_dmStatus](https://david-dm.org/dfeagans/dEmail.png)
 ======
 
-![David_dmStatus](https://david-dm.org/dfeagans/dEmail.png)
 The goal of this quick project is to automatically send out a result's email after every NASCAR practice session. I used the Antwort email template because it handles both Outlook and mobile formatting concerns.
 
 There were three reasons I tried this project: First, I needed to apply all the html, css, and node documentation I had been reading. Second, the current result's email is a screenshot of the leaderboard, which isn't exactly congruent with the company's polished image. Third, based on [this data](http://www.campaignmonitor.com/resources/will-it-work/email-clients/), it seems like making the formatting more mobile-friendly could add some value. 
