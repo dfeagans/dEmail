@@ -31,7 +31,6 @@ http.createServer(function (request, response) {
     var raceID = target.query.raceID;
 
     if (target.pathname === '/RequestResults') {
-	console.log("\ndEmail Test");
 	var emailAddress = config.approvedEmails[emailName];
 	async.waterfall([
 	    //Part 1 makes sure it's a valid request and if so, determines the correct RaceID to use
@@ -40,21 +39,17 @@ http.createServer(function (request, response) {
 		    return callback('Email Not Approved');
 		}
 		if (raceID) {
-		    console.log('raceID given.');		    
 		    callback(null, raceID);
 		} else {
-		    console.log('noRaceID given');
 		    getCurrentRaceID(callback);
 		}
 	    },
 	    //Part 2 actually tries to get the JSON data
 	    function(properRaceID, callback){
-		console.log("Part2");
 		getLeaderboard(properRaceID, callback);
 	    },
 	    //Part 3 actually sends the email
 	    function(callback){
-		console.log('PART 3 Send Email');
 		sendResults(emailAddress, callback);
 	    }
 	], function(err){
@@ -74,7 +69,6 @@ function getLeaderboard(raceRequest, callback){
 	});
 	response.on('end', function(){
 	    fs.writeFile('leaderboard.json', leaderboardJSON, function (err){
-		console.log('Got Leaderboard for RaceID: ' + raceRequest);
 		if (response.statusCode === 404) {
 		    errMessage = 'RaceID (' + raceRequest +') Not Found @ ' + 'http://www.nascar.com/leaderboard/Series_1/2014/' + raceRequest  + '/1/leaderboard.json';
 		}
@@ -94,12 +88,12 @@ function range(start, end) {
 
 function getCurrentRaceID(callback){
     //Daytona was the first race of 2014, it's raceID was 4282.
-    var seedRaceID = 4282;
+    var seedRaceID = 4283;
     var err;
     var currentID;
 
     //There are 36 races a season, I just use 40 to be safe due to the all-star race and tests.
-    var raceList = range(seedRaceID, seedRaceID + 2);
+    var raceList = range(seedRaceID, seedRaceID + 40);
     async.map(raceList, raceAvailable, function(err, testedRaceIDs){
 	currentID = Math.max.apply(Math, testedRaceIDs);
 	return callback(err, currentID);
@@ -110,10 +104,12 @@ function raceAvailable(raceIDtoTest, callback){
     var options = {method: 'HEAD',
 		   host: 'www.nascar.com',
 		   post: 80,
-		   path: '/leaderboard/Series_1/2014/' + raceIDtoTest  + '/1/leaderboard.json'
+		   path: '/leaderboard/Series_1/2014/' + raceIDtoTest  + '/1/leaderboard.json',
+		   agent: false
 		  };
-    
+
     var req = http.request(options,function(res){
+	//	console.log(raceIDtoTest + ": " + res.statusCode);
 	if (res.statusCode === 200) {
 	    callback(null, raceIDtoTest);
 	} else {
@@ -127,10 +123,3 @@ function raceAvailable(raceIDtoTest, callback){
     
     req.end();
 }
-
-/* DEBUG CALL
-raceAvailable(4282, function(err, result){
-console.log('Error: ' + err);
-console.log('Result: ' + result);
-})
-*/
