@@ -99,10 +99,11 @@ function getCurrentRaceID(callback){
     var currentID;
 
     //There are 36 races a season, I just use 40 to be safe due to the all-star race and tests.
-    var raceList = range(seedRaceID, seedRaceID + 40);
-
-    currentID = Math.max.apply(Math,raceList);
-    return callback(err, currentID);
+    var raceList = range(seedRaceID, seedRaceID + 2);
+    async.map(raceList, raceAvailable, function(err, testedRaceIDs){
+	currentID = Math.max.apply(Math, testedRaceIDs);
+	return callback(err, currentID);
+    });
 }
 
 function raceAvailable(raceIDtoTest, callback){
@@ -114,15 +115,22 @@ function raceAvailable(raceIDtoTest, callback){
     
     var req = http.request(options,function(res){
 	if (res.statusCode === 200) {
-	    return callback(null, 1);
+	    callback(null, raceIDtoTest);
 	} else {
-	    return callback(null, 0);
+	    callback(null, 0);
 	}
     });
     
     req.on('error', function(err) {
-	return callback(err.message);
+	callback(err.message);
     });
     
     req.end();
 }
+
+/* DEBUG CALL
+raceAvailable(4282, function(err, result){
+console.log('Error: ' + err);
+console.log('Result: ' + result);
+})
+*/
