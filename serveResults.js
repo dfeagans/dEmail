@@ -88,12 +88,12 @@ function range(start, end) {
 
 function getCurrentRaceID(callback){
     //Daytona was the first race of 2014, it's raceID was 4282.
-    var seedRaceID = 4283;
+    var FIRST_RACE_ID = 4283;
     var err;
     var currentID;
 
     //There are 36 races a season, I just use 40 to be safe due to the all-star race and tests.
-    var raceList = range(seedRaceID, seedRaceID + 40);
+    var raceList = range(FIRST_RACE_ID, FIRST_RACE_ID + 40);
     async.map(raceList, raceAvailable, function(err, testedRaceIDs){
 	currentID = Math.max.apply(Math, testedRaceIDs);
 	return callback(err, currentID);
