@@ -12,19 +12,20 @@ There were three reasons I tried this project: First, I needed to apply all the 
 - [X] Create html template using [antwort's](http://internations.github.io/antwort/) guidelines that replicates the PR departments current style. 
 - [X] Convert the html template to a Jade template for later use in generating the static email html. I used [html2jade](http://html2jade.com/) to turn his template into a starter jade file.
 - [X] Style the email template upt to match current marketing document.
-- [ ] **Current Task ** Use node.js to grab data from Nascar's json feed. Search for all the available practice results and create an email for the most recent.
+- [X] Use node.js to grab data from Nascar's json feed. Search for all the available practice results and create an email for the most recent.
 - [X] Combine the leaderboard.json feed with the jade template and ~~save the resulting html to file~~. email the html with images as integrated attachments.
-- [ ] Test it using Litmus. Mostly worried about Outlook.
+- [ ] Polish up styling and test it using Litmus. Mostly worried about Outlook.
 - [X] Use [nodemailer](www.nodemailer.com) to mail the email to a single person for final review before forwarding it out.
 - [X] Create simple way to trigger the email being sent. dev.okdane.com/RequestResults?email=FirstPartOfEmail triggers it to be sent, but you have to be on the approved list.
 - [X]- Come up with a better way of integrating the gmail account to send the emails and an easier way to maintain the approved list of email recipients that can make the request.
 
- **REMINDER:** Make it so that the webpage is 100% on mobile screens. Make sure all background colors are specified in 6 digit hex. That works the best. 
+**Current Issue**
+- My getCurrentRaceID function requests the headers for every raceID I expect to see over the season. Then it returns the highest RaceID from the ones where the request returned 200. Sometimes random ones that shouldn't have returned 200 do and then it passes an erroneous raceID to the getLeaderboard function (the 404 error is later caught and it throws a message to the user at the point). Why are odd RaceIDs showing succcessful headers? I could brute force it and make a function that finds the last number that was preceded by a number (since the erroneous ones are usually floating in a sea of 0's which I use to indicate the file doesn't exist).
 
 **Lessons for Next Time**
 - One of the big problems with html emails is that you can't use CSS and that most email clients only render the inline style attributes. The antwort guide advises against using a style inliner, but it was a huge pain doing everything inline. Atleast try the inliner next time. There were several times where a certain font sized didn't look write. So I only had to change it one place, I made an object called format at the top of the template that had things like titleSize : "15pt" for example. Then I could use format.titleSize all over the place.
 
-**Personal Bonuse Points**
+**Personal Bonus Points**
 - Add more signal, less noise. This available is already available on the internet. It's nice to have it sent to your inbox, but add more value to it. Possibly do statistical analysis on all previous practices at that track and our finish and predict probabilities of finishing in top 10, top 5, or winning. Another good idea would be to show the 2 lap average, 5 lap average, and 10 lap average for each fo the cars that did runs long enough to calculate them.
 - Make it able to focus on specific cars and more/less than the current two cars. The in the GET request you could send a query parameter with the list of cars.
-- Have a think about the entire process: Because I was doing everything for the first time, I broke the project up into simple functions. The first loads a json into memory and usese the jade template to create the email and then sends it out. The second component grabs the json form the network and saves it to disk. This is nice because I could reuse those components for different purposes, but would it be worthwhile to skip saving the json to disk and just pass it into the template?
+- Think about the entire process: Because I was doing everything for the first time, I broke the project up into simple functions. The first loads a json into memory and uses the jade template to create the email and then sends it out. The second component grabs the json form the network and saves it to disk. This is nice because I could reuse those components for different purposes, but would it be worthwhile to skip saving the json to disk and just pass it into the template?
