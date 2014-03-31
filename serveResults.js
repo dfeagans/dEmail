@@ -109,8 +109,7 @@ function raceAvailable(raceIDtoTest, callback){
 		  };
 
     var req = http.request(options,function(res){
-	//	console.log(raceIDtoTest + ": " + res.statusCode);
-	if (res.statusCode === 200) {
+	if (res.statusCode === 200 && res.headers['content-type'] === 'application/json') {
 	    callback(null, raceIDtoTest);
 	} else {
 	    callback(null, 0);
