@@ -127,11 +127,11 @@ html(lang='en')
                           else if driver.Driver.DriverName === "Joey Logano"
                             - rowStyle = "red; font-weight: bold; color: white"
 
-                          tr(style = "background: " + rowStyle)
+                          tr(height="25px" style = "background: " + rowStyle)
                             td(style="text-align: center")= i+1
                             td(style="text-align: center")= driver.CarNo
                             td(style="padding-left:4px")= driver.Driver.DriverName
-                            td(style="padding-left:4px")= driver.Sponsor
+                            td(style="padding-left:4px")= driver.Sponsor.substring(0,22)
                             td(style="text-align: center")= (driver.BestTime).toFixed(2)
                             td(style="text-align: center")= (driver.BestSpeed).toFixed(2)
                             td(style="text-align: center")= driver.BestLap
