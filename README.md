@@ -5,6 +5,7 @@ The goal of this quick project is to automatically send out a result's email aft
 
 There were three reasons I tried this project: First, I needed to apply all the html, css, and node documentation I had been reading. Second, the current result's email is a screenshot of the leaderboard, which isn't exactly congruent with the company's polished image. Third, based on [this data](http://www.campaignmonitor.com/resources/will-it-work/email-clients/), it seems like making the formatting more mobile-friendly could add some value. 
 
+![Resulting Email Screenshot](/images/screenshot_dEmail.png "Resulting Email")
 
 **How-To Use**
 - After hosting this, just go to <your domain>/RequestResults?email=<EMAIL_ID> to send the current leaderboard results to the email associated with <EMAIL_ID>.
