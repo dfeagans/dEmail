@@ -19,7 +19,7 @@ There were three reasons I tried this project: First, I needed to apply all the 
 - [X] Style the email template upt to match current marketing document.
 - [X] Use node.js to grab data from Nascar's json feed. Search for all the available practice results and create an email for the most recent.
 - [X] Combine the leaderboard.json feed with the jade template and ~~save the resulting html to file~~. email the html with images as integrated attachments.
-- [ ] Polish up styling and test it using Litmus. Mostly worried about Outlook.
+- [ ] Polish up styling and test it using Litmus. There is a minor border issue in Outlook currently. That's job number 1.
 - [X] Use [nodemailer](www.nodemailer.com) to mail the email to a single person for final review before forwarding it out.
 - [X] Create simple way to trigger the email being sent. dev.okdane.com/RequestResults?email=FirstPartOfEmail triggers it to be sent, but you have to be on the approved list.
 - [X]- Come up with a better way of integrating the gmail account to send the emails and an easier way to maintain the approved list of email recipients that can make the request.
