@@ -22,7 +22,7 @@ There were three reasons I tried this project: First, I needed to apply all the 
 - [ ] Polish up styling and test it using Litmus. There is a minor border issue in Outlook currently. That's job number 1.
 - [X] Use [nodemailer](www.nodemailer.com) to mail the email to a single person for final review before forwarding it out.
 - [X] Create simple way to trigger the email being sent. dev.okdane.com/RequestResults?email=FirstPartOfEmail triggers it to be sent, but you have to be on the approved list.
-- [X]- Come up with a better way of integrating the gmail account to send the emails and an easier way to maintain the approved list of email recipients that can make the request.
+- [X] Come up with a better way of integrating the gmail account to send the emails and an easier way to maintain the approved list of email recipients that can make the request.
 
 **Lessons for Next Time**
 - One of the big problems with html emails is that you can't use CSS and that most email clients only render the inline style attributes. The antwort guide advises against using a style inliner, but it was a huge pain doing everything inline. Atleast try the inliner next time. There were several times where a certain font sized didn't look pleasing. So I only had to change it one place, I made an object called format at the top of the template that had things like titleSize : "15pt" for example. Then I could use format.titleSize all over the place.
